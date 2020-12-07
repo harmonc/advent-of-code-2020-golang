@@ -30,7 +30,6 @@ func main() {
         if(seatIDs[i+1]-seatIDs[i]==2){
             result = seatIDs[i] + 1
                 fmt.Println("GAP",result)
-
         }
 	}
 }
