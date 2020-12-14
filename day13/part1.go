@@ -8,12 +8,6 @@ import (
     "math"
 )
 
-type bag struct {
-    color string
-    count int
-}
-
-
 func main() {
     data, err := ioutil.ReadFile("data2.txt")
     if err != nil {
