@@ -17,7 +17,7 @@ func main() {
     for i,value := range(lines){
         for j,cell := range(strings.Split(value,"")){
             if strings.Compare(cell,"#") == 0{
-                newCube := []int{j,i,0}
+                newCube := []int{j,i,0,0}
                 cubes = append(cubes, newCube)
             }
         }
@@ -30,21 +30,19 @@ func main() {
         max := maxValues(cubes)
         newCubes := make([][]int,0)
         fmt.Println("STATE")
-        for z := min[2] - 1; z <= max[2] + 1; z++{
-            fmt.Println("Z=",z)
-            for y := min[1] - 1; y <= max[1] + 1; y++{
-                for x := min[0] - 1; x <= max[0] + 1; x++{
-                    test := []int{x,y,z}
-                    active := isActive(cubes, test)
-                    if active{
-                        newCubes = append(newCubes,test)
-                        fmt.Print("#")
-                    }else{
-                        fmt.Print(".")
+        for w := min[3] - 1; w <= max[3] +1; w++{
+            for z := min[2] - 1; z <= max[2] + 1; z++{
+                for y := min[1] - 1; y <= max[1] + 1; y++{
+                    for x := min[0] - 1; x <= max[0] + 1; x++{
+                        test := []int{x,y,z,w}
+                        active := isActive(cubes, test)
+                        if active{
+                            newCubes = append(newCubes,test)
+                        }else{
+                        }
                     }
-                }
-                fmt.Println("")
-            }  
+                }  
+            }
         }
         fmt.Println(newCubes)
         cubes = newCubes
@@ -56,17 +54,20 @@ func printCubes(cubes [][]int) {
     min := minValues(cubes)
     max := maxValues(cubes)
     fmt.Println(min,max)
-    for z := min[2] - 1; z <= max[2] + 1; z++{
-        fmt.Println("Z=",z)
-        for y := min[1] - 1; y <= max[1] + 1; y++{
-            for x := min[0] - 1; x <= max[0] + 1; x++{
-                if isInArray(cubes, []int{x,y,z}){
-                    fmt.Print("#")
-                }else{
-                    fmt.Print(".")
+    for w := min[3] - 1; w <= max[3] +1; w++{
+        fmt.Println("W=")
+        for z := min[2] - 1; z <= max[2] + 1; z++{
+            fmt.Println("Z=",z)
+            for y := min[1] - 1; y <= max[1] + 1; y++{
+                for x := min[0] - 1; x <= max[0] + 1; x++{
+                    if isInArray(cubes, []int{x,y,z}){
+                        fmt.Print("#")
+                    }else{
+                        fmt.Print(".")
+                    }
                 }
+                fmt.Println("")
             }
-            fmt.Println("")
         }
     }
 }
